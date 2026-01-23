@@ -1,15 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import router from "./router";
-import AdminProvider from "./contexts/AdminContext";
+import ContextApi from "./contexts/ContextApi";
 
 const appRouter = createBrowserRouter(router);
 
 function App() {
   return (
     <>
-      <AdminProvider>
+      <ContextApi>
         <RouterProvider router={appRouter} />
-      </AdminProvider>
+      </ContextApi>
     </>
   );
 }

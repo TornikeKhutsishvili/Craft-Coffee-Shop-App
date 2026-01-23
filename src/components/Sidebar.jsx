@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import root from "../rootStyle";
 
 const SidebarContainer = styled.div`
   width: 250px;
-  background-color: ${(p) => p.theme.colors.white};
-  box-shadow: ${(p) => p.theme.shadow};
+  background-color: ${root.colors.white};
+  box-shadow: ${root.shadow};
   padding: 20px;
   position: fixed;
   height: 100vh;
@@ -27,7 +28,7 @@ const Logo = styled.div`
   }
   h1 {
     font-size: 1.5rem;
-    color: ${(p) => p.theme.colors.primary};
+    color: ${root.colors.primary};
   }
 `;
 
@@ -39,11 +40,11 @@ const Nav = styled.ul`
       display: flex;
       align-items: center;
       padding: 10px;
-      border-radius: ${(p) => p.theme.borderRadius};
-      color: ${(p) => p.theme.colors.text};
+      border-radius: ${root.borderRadius};
+      color: ${root.colors.text};
       text-decoration: none;
       &.active {
-        background-color: ${(p) => p.theme.colors.accent};
+        background-color: ${root.colors.accent};
         color: white;
       }
     }
@@ -51,7 +52,7 @@ const Nav = styled.ul`
 `;
 
 const Sidebar = () => {
-  const getLiClass = (isActive) => (isActive ? `` : ``);
+  // const getLiClass = (isActive) => (isActive ? `` : ``);
 
   return (
     <>
@@ -61,12 +62,14 @@ const Sidebar = () => {
           <h1>Bean Brew</h1>
         </Logo>
         <Nav>
-          <li className={getLiClass(isActive)}>
+          {/* <li className={getLiClass(isActive)}> */}
+          <li>
             <NavLink to="/" end>
               Coffee Menu
             </NavLink>
           </li>
-          <li className={getLiClass(isActive)}>
+          {/* <li className={getLiClass(isActive)}> */}
+          <li>
             <NavLink to="/cart">Cart</NavLink>
           </li>
         </Nav>

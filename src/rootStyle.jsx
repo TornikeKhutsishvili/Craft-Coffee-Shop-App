@@ -1,4 +1,4 @@
-export const theme = {
+const rootStyle = {
   colors: {
     primary: "#7d5a50",
     secondary: "#b4846c",
@@ -11,3 +11,5 @@ export const theme = {
   shadow: "0 4px 8px rgba(0,0,0,1)",
   borderRadius: "12px",
 };
+
+export default rootStyle;
