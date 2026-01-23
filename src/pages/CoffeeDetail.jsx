@@ -1,8 +1,8 @@
-import IngredientList from "./IngredientList";
 import styled from "styled-components";
-import root from "../rootStyle";
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useContextApi } from "../contexts/ContextApi";
+import IngredientList from "./IngredientList";
+import root from "../rootStyle";
 
 const Container = styled.div`
   display: flex;
@@ -33,8 +33,9 @@ const Description = styled.p``;
 
 const CoffeeDetail = () => {
   const { id } = useParams();
-  const { data: coffees } = useFetch("http://localhost:3004/coffees");
-  const { data: ingredients } = useFetch("http://localhost:3004/ingredients");
+  const { coffees, ingredients, currency } = useContextApi();
+
+  if (!coffees || !ingredients) return <p>Loading . . .</p>;
 
   const coffee = coffees.find((cof) => cof.id.toString() === id);
   if (!coffee) return <p>Coffee not found</p>;
@@ -43,13 +44,16 @@ const CoffeeDetail = () => {
     coffee.ingredients.includes(ingred.id),
   );
 
+  const price =
+    currency === "GEL" ? `₾${coffee.priceGEL}` : `$${coffee.priceUSD}`;
+
   return (
     <>
       <Container>
         <Image img={coffee.Image} />
         <Info>
           <Title>{coffee.name}</Title>
-          <Price>₾{coffee.price}</Price>
+          <Price>{price}</Price>
           <Description>{coffee.description}</Description>
           <h3>Ingredients:</h3>
           <IngredientList ingredients={coffeeIngredients} />

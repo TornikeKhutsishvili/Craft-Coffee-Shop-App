@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CoffeeCard from "../components/CoffeeCard";
-import useFetch from "../hooks/useFetch";
+import { useContextApi } from "../contexts/ContextApi";
 
 const Grid = styled.div`
   display: grid;
@@ -9,14 +9,9 @@ const Grid = styled.div`
 `;
 
 const CoffeeList = () => {
-  const {
-    data: coffees,
-    loading,
-    error,
-  } = useFetch("http://localhost:3004/coffees");
+  const { coffees, loadingCoffees } = useContextApi();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loadingCoffees) return <p>Loading . . .</p>;
 
   return (
     <Grid>

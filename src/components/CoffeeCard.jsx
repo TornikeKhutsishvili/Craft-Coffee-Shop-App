@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import root from "../rootStyle";
+import { useContextApi } from "../contexts/ContextApi";
 
 const Card = styled.div`
   background: ${root.colors.white};
@@ -35,13 +36,21 @@ const CoffeeDesc = styled.p`
   overflow: hidden;
 `;
 
+const PriceP = styled.p``;
+
 const CoffeeCard = ({ coffee }) => {
+  const { currency } = useContextApi();
+
+  const price =
+    currency === "GEL" ? `₾${coffee.priceGEL}` : `$${coffee.priceUSD}`;
+
   return (
     <>
       <Card>
         <CoffeeImage style={{ backgroundImage: `url(${coffee.image})` }} />
         <CoffeeInfo>
           <CoffeeName>{coffee.title}</CoffeeName>
+          <PriceP>{price}</PriceP>
           <CoffeeDesc>{coffee.description}</CoffeeDesc>
         </CoffeeInfo>
       </Card>

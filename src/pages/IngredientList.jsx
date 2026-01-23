@@ -10,11 +10,13 @@ const Item = styled.li`
 `;
 
 const IngredientList = ({ ingredients }) => {
+  if (!ingredients) return null;
+
   return (
     <>
       <List>
-        {ingredients.map((ingr) => (
-          <Item key={ingr.id}>{ingr.name}</Item>
+        {ingredients.map((ingred) => (
+          <Item key={ingred.id}>{ingred.name}</Item>
         ))}
       </List>
     </>

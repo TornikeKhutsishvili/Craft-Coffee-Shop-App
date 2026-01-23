@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
 const ContextApi = createContext(null);
@@ -16,22 +16,53 @@ const ContextApiProvider = ({ children }) => {
     error: ingredientsError,
   } = useFetch(`${API_URL}/ingredients`);
 
+  const [currency, setCurrency] = useState("GEL");
+  const [rate, setRate] = useState(1);
+
+  const convertCurrency = async (amount, to) => {
+    if (to === "GEL") {
+      const res = await fetch(
+        `https://bankofgeorgia.ge/api/currencies/convert/USD/GEL?amountFrom=${amount}`,
+      );
+
+      const data = await res.json();
+      return data.amountTo;
+    }
+
+    return amount;
+  };
+
   const contextValue = useMemo(
     () => ({
       coffees,
       ingredients,
+
       loadingCoffees,
       loadingIngredients,
+
       coffeeError,
       ingredientsError,
+
+      currency,
+      setCurrency,
+
+      rate,
+      setRate,
+
+      convertCurrency,
     }),
     [
       coffees,
       ingredients,
+
       loadingCoffees,
       loadingIngredients,
+
       coffeeError,
       ingredientsError,
+
+      currency,
+      rate,
     ],
   );
 
