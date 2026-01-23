@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
+import Header from "../components/Header";
 
 export const Container = styled.div`
   display: flex;
@@ -18,12 +19,13 @@ export const MainContent = styled.main`
   }
 `;
 
-const MainLayout = () => {
+const MainLayout = ({ title }) => {
   return (
     <>
       <Container>
         <Sidebar />
         <MainContent>
+          <Header title={title} />
           <Outlet />
         </MainContent>
       </Container>
