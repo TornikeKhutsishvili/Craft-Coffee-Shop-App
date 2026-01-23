@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import root from "../rootStyle";
+import { useContextApi } from "../contexts/ContextApi";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -26,15 +27,35 @@ const CurrencySelector = styled.select`
   cursor: pointer;
 `;
 
+const CurrencySelectorTitle = styled.label`
+  color: black;
+`;
+
+const CurrencyDiv = styled.div`
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Header = ({ title }) => {
+  const { currency, setCurrency } = useContextApi();
+
   return (
     <>
       <HeaderContainer>
         <Title>{title}</Title>
-        <CurrencySelector>
-          <option value="GEL">GEL (₾)</option>
-          <option value="USD">USD ($)</option>
-        </CurrencySelector>
+
+        <CurrencyDiv>
+          <CurrencySelectorTitle>Currency:</CurrencySelectorTitle>
+          <CurrencySelector
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            <option value="GEL">GEL (₾)</option>
+            <option value="USD">USD ($)</option>
+          </CurrencySelector>
+        </CurrencyDiv>
       </HeaderContainer>
     </>
   );

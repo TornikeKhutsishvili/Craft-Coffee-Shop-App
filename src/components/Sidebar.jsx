@@ -43,6 +43,7 @@ const Nav = styled.ul`
       border-radius: ${root.borderRadius};
       color: ${root.colors.text};
       text-decoration: none;
+      gap: 5px;
       &.active {
         background-color: ${root.colors.accent};
         color: white;
@@ -56,17 +57,28 @@ const Sidebar = () => {
     <>
       <SidebarContainer>
         <Logo>
-          <img src="/images/coffee-logo.png" alt="Logo" />
+          <img src="/logo.png" alt="Logo" />
           <h1>Bean Brew</h1>
         </Logo>
         <Nav>
           <li>
             <NavLink to="/" end>
+              <i className="fas fa-mug-hot"></i>
               Coffee Menu
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cart">Cart</NavLink>
+            <NavLink to="/ingredient">
+              <i className="fa-solid fa-cubes-stacked"></i>
+              Ingredients
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+              Cart
+            </NavLink>
+            <div className="cart-badge"></div>
           </li>
         </Nav>
       </SidebarContainer>
