@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import root from "../rootStyle";
 
 const CartContainer = styled.div`
-  background: ${(p) => p.theme.colors.white};
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: ${(p) => p.theme.shadow};
+  background: ${root.colors.white};
+  border-radius: ${root.borderRadius};
+  box-shadow: ${root.shadow};
   padding: 20px;
 `;
 

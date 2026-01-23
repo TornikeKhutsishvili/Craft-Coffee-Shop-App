@@ -1,9 +1,11 @@
 // Layout
 import MainLayout from "./layouts/MainLayout";
-import Home from "./pages/Home";
-import CartPage from "./pages/CartPage";
 // Pages
-
+import CoffeeList from "./pages/CoffeeList";
+import IngredientList from "./pages/IngredientList";
+import CartPage from "./pages/CartPage";
+import CoffeeDetail from "./pages/CoffeeDetail";
+import IngredientDetail from "./pages/IngredientDetail";
 // Error Page
 import ErrorPage from "./pages/ErrorPage";
 
@@ -13,14 +15,26 @@ const router = [
     element: <MainLayout />,
     children: [
       {
-        element: <Home />,
+        element: <CoffeeList />,
         path: "/",
+      },
+      {
+        element: <IngredientList />,
+        path: "/ingredient",
       },
       {
         element: <CartPage />,
         path: "/cart",
       },
       // dynamic Routes
+      {
+        element: <CoffeeDetail />,
+        path: "/:id",
+      },
+      {
+        element: <IngredientDetail />,
+        path: "/ingredient/:id",
+      },
     ],
   },
   // Error Handling Routes

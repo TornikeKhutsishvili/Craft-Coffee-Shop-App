@@ -52,8 +52,6 @@ const Nav = styled.ul`
 `;
 
 const Sidebar = () => {
-  // const getLiClass = (isActive) => (isActive ? `` : ``);
-
   return (
     <>
       <SidebarContainer>
@@ -62,13 +60,11 @@ const Sidebar = () => {
           <h1>Bean Brew</h1>
         </Logo>
         <Nav>
-          {/* <li className={getLiClass(isActive)}> */}
           <li>
             <NavLink to="/" end>
               Coffee Menu
             </NavLink>
           </li>
-          {/* <li className={getLiClass(isActive)}> */}
           <li>
             <NavLink to="/cart">Cart</NavLink>
           </li>
