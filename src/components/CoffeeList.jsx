@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CoffeeCard from "./CoffeeCard";
 
 const Grid = styled.div`
   display: grid;
@@ -6,13 +7,12 @@ const Grid = styled.div`
   gap: 25px;
 `;
 
-const CoffeeList = ({ id, coffee }) => {
+const CoffeeList = ({ coffees }) => {
   return (
     <Grid>
-      <CoffeeCard key={id} coffee={coffee} />
-      {/* {coffees.map((cof) => (
+      {coffees.map((cof) => (
         <CoffeeCard key={cof.id} coffee={cof} />
-      ))} */}
+      ))}
     </Grid>
   );
 };
