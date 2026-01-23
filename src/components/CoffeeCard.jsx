@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import root from "../rootStyle";
 
 const Card = styled.div`
-  background: ${(p) => p.theme.colors.white};
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: ${(p) => p.theme.shadow};
+  background: ${root.colors.white};
+  border-radius: ${root.borderRadius};
+  box-shadow: ${root.shadow};
   overflow: hidden;
   transition: transform 0.3s ease;
   &:hover {
@@ -13,7 +14,7 @@ const Card = styled.div`
 
 const CoffeeImage = styled.div`
   height: 180px;
-  background: ${(p) => p.theme.colors.accent};
+  background: ${root.colors.accent};
   background-size: cover;
   background-position: center;
 `;
@@ -23,7 +24,7 @@ const CoffeeInfo = styled.div`
 `;
 
 const CoffeeName = styled.h3`
-  color: ${(p) => p.theme.colors.primary};
+  color: ${root.colors.primary};
   margin-bottom: 5px;
 `;
 
