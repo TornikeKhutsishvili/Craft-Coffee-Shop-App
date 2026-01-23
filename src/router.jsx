@@ -1,5 +1,7 @@
 // Layout
 import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
+import CartPage from "./pages/CartPage";
 // Pages
 
 // Error Page
@@ -10,6 +12,14 @@ const router = [
   {
     element: <MainLayout />,
     children: [
+      {
+        element: <Home />,
+        path: "/",
+      },
+      {
+        element: <CartPage />,
+        path: "/cart",
+      },
       // dynamic Routes
     ],
   },

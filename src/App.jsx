@@ -8,9 +8,7 @@ function App() {
   return (
     <>
       <AdminProvider>
-        <div className="app">
-          <RouterProvider router={appRouter} />
-        </div>
+        <RouterProvider router={appRouter} />
       </AdminProvider>
     </>
   );
