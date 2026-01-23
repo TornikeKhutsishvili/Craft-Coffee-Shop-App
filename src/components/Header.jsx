@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import root from "../rootStyle";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -12,16 +13,16 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  color: ${(p) => p.theme.colors.primary};
+  color: ${root.colors.primary};
   font-size: 1.8rem;
 `;
 
 const CurrencySelector = styled.select`
   padding: 8px 12px;
-  border-radius: ${(p) => p.theme.borderRadius};
+  border-radius: ${root.borderRadius};
   border: 1px solid #ddd;
   outline: none;
-  background-color: ${(p) => p.theme.colors.white};
+  background-color: ${root.colors.white};
   cursor: pointer;
 `;
 
