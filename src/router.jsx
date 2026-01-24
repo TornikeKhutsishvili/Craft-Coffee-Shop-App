@@ -8,6 +8,7 @@ import CoffeeDetail from "./pages/CoffeeDetail";
 import IngredientDetail from "./pages/IngredientDetail";
 // Error Page
 import ErrorPage from "./pages/ErrorPage";
+import Purchase from "./pages/Purchase";
 
 const router = [
   // Nested Routes
@@ -29,6 +30,10 @@ const router = [
       {
         element: <CartPage />,
         path: "/cart",
+      },
+      {
+        element: <Purchase />,
+        path: "/purchase",
       },
       // dynamic Routes
       {

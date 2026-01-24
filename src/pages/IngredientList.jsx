@@ -3,6 +3,12 @@ import root from "../rootStyle";
 import { useContextApi } from "../contexts/ContextApi";
 import { Link } from "react-router-dom";
 
+const IngredientWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+
 const Card = styled.div`
   background: ${root.colors.white};
   border-radius: ${root.borderRadius};
@@ -10,6 +16,9 @@ const Card = styled.div`
   overflow: hidden;
   transition: transform 0.3s ease;
   margin-top: 20px;
+  margin-right: 20px;
+  width: 380px;
+
   &:hover {
     transform: translateY(-5px);
   }
@@ -97,31 +106,33 @@ const IngredientList = () => {
 
   return (
     <>
-      {ingredients.map((ingredient) => (
-        <Card key={ingredient.id}>
-          <IngredientInfo>
-            <IngredientName>Name: {ingredient.name}</IngredientName>
-            <IngredientDesc>Desc: {ingredient.description}</IngredientDesc>
-            <IngredientStrength>
-              Strength: {ingredient.strength}
-            </IngredientStrength>
-            <IngredientFlavor>Flavor: {ingredient.flavor}</IngredientFlavor>
+      <IngredientWrapper>
+        {ingredients.map((ingredient) => (
+          <Card key={ingredient.id}>
+            <IngredientInfo>
+              <IngredientName>Name: {ingredient.name}</IngredientName>
+              <IngredientDesc>Desc: {ingredient.description}</IngredientDesc>
+              <IngredientStrength>
+                Strength: {ingredient.strength}
+              </IngredientStrength>
+              <IngredientFlavor>Flavor: {ingredient.flavor}</IngredientFlavor>
 
-            <PriceContainer>
-              <Price>{formatPrice(ingredient.price)}</Price>
-              <CurrencyToggle>
-                <i className="fas fa-exchange-alt"></i>
-              </CurrencyToggle>
-            </PriceContainer>
+              <PriceContainer>
+                <Price>{formatPrice(ingredient.price)}</Price>
+                <CurrencyToggle>
+                  <i className="fas fa-exchange-alt"></i>
+                </CurrencyToggle>
+              </PriceContainer>
 
-            <Buttons>
-              <Link to={`/ingredient/${ingredient.id}`}>
-                <Btn $secondary>Details</Btn>
-              </Link>
-            </Buttons>
-          </IngredientInfo>
-        </Card>
-      ))}
+              <Buttons>
+                <Link to={`/ingredient/${ingredient.id}`}>
+                  <Btn $secondary>Details</Btn>
+                </Link>
+              </Buttons>
+            </IngredientInfo>
+          </Card>
+        ))}
+      </IngredientWrapper>
     </>
   );
 };
