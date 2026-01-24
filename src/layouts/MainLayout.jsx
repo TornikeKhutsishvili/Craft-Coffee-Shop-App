@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -19,13 +19,33 @@ export const MainContent = styled.main`
   }
 `;
 
-const MainLayout = ({ title }) => {
+const titles = {
+  "/": "Coffee Selection",
+  "/cart": "Your Shopping Cart",
+  "/coffee": "Coffee",
+  "/coffee/:id": "Coffee Details",
+  "/ingredient": "Ingredients",
+  "/ingredient/:id": "Ingredient Details",
+};
+
+const MainLayout = () => {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const title = Object.keys(titles).find((key) => {
+    if (key.includes(":")) {
+      const base = key.split("/:")[0];
+      return path.startsWith(base);
+    }
+    return key === path;
+  });
+
   return (
     <>
       <Container>
         <Sidebar />
         <MainContent>
-          <Header title={title} />
+          <Header title={title ? titles[title] : ""} />
           <Outlet />
         </MainContent>
       </Container>

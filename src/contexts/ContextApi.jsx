@@ -1,4 +1,11 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import useFetch from "../hooks/useFetch";
 
 const ContextApi = createContext(null);
@@ -19,18 +26,53 @@ const ContextApiProvider = ({ children }) => {
   const [currency, setCurrency] = useState("GEL");
   const [rate, setRate] = useState(1);
 
-  const convertCurrency = async (amount, to) => {
-    if (to === "GEL") {
-      const res = await fetch(
-        `https://bankofgeorgia.ge/api/currencies/convert/USD/GEL?amountFrom=${amount}`,
-      );
+  useEffect(() => {
+    const fetchRate = async () => {
+      try {
+        const res = await fetch(
+          "https://bankofgeorgia.ge/api/currencies/convert/USD/GEL?amountFrom=1",
+        );
 
-      const data = await res.json();
-      return data.amountTo;
-    }
+        const data = await res.json();
+        const usd = data.data.find((c) => c.ccy === "GEL");
 
-    return amount;
-  };
+        if (usd?.currentRate) {
+          setRate(usd.currentRate);
+        } else {
+          throw new Error("USD rate not found");
+        }
+
+        // setRate(data.amountTo);
+      } catch (e) {
+        console.error("Currency fetch error", e);
+        setRate(2.7);
+      }
+    };
+
+    fetchRate();
+  }, [currency]);
+
+  const formatPrice = useCallback(
+    (usdPrice) => {
+      if (!usdPrice) return "";
+
+      if (currency === "USD") {
+        return `$${(usdPrice / rate).toFixed(2)}`;
+      }
+      return `₾${usdPrice.toFixed(2)}`;
+    },
+    [currency, rate],
+  );
+
+  const CART_KEY = "coffee_cart";
+  const [cartItems, setCartItems] = useState(() => {
+    const stored = localStorage.getItem(CART_KEY);
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const contextValue = useMemo(
     () => ({
@@ -39,7 +81,6 @@ const ContextApiProvider = ({ children }) => {
 
       loadingCoffees,
       loadingIngredients,
-
       coffeeError,
       ingredientsError,
 
@@ -47,9 +88,10 @@ const ContextApiProvider = ({ children }) => {
       setCurrency,
 
       rate,
-      setRate,
+      formatPrice,
 
-      convertCurrency,
+      cartItems,
+      setCartItems,
     }),
     [
       coffees,
@@ -57,12 +99,13 @@ const ContextApiProvider = ({ children }) => {
 
       loadingCoffees,
       loadingIngredients,
-
       coffeeError,
       ingredientsError,
 
       currency,
       rate,
+      formatPrice,
+      cartItems,
     ],
   );
 

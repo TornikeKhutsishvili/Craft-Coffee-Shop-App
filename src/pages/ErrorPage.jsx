@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import root from "../rootStyle";
 
 const ErrorPageWrapper = styled.section`
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(p) => p.theme.colors.background};
+  background-color: #e5b299;
 `;
 
 const ErrorCard = styled.div`
-  background-color: ${(p) => p.theme.colors.white};
+  background-color: ${root.colors.white};
   padding: 50px 60px;
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: ${(p) => p.theme.shadow};
+  border-radius: ${root.borderRadius};
+  box-shadow: ${root.shadow};
   text-align: center;
   max-width: 500px;
   width: 100%;
@@ -21,13 +22,13 @@ const ErrorCard = styled.div`
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  color: ${(p) => p.theme.colors.primary};
+  color: ${root.colors.primary};
   margin-bottom: 15px;
 `;
 
 const Description = styled.p`
   font-size: 1rem;
-  color: ${(p) => p.theme.colors.text};
+  color: ${root.colors.text};
   margin-bottom: 30px;
   line-height: 1.6;
 `;
@@ -35,15 +36,15 @@ const Description = styled.p`
 const BackButton = styled(Link)`
   display: inline-block;
   padding: 12px 24px;
-  background-color: ${(p) => p.theme.colors.primary};
-  color: ${(p) => p.theme.colors.white};
-  border-radius: ${(p) => p.theme.borderRadius};
+  background-color: ${root.colors.primary};
+  color: ${root.colors.white};
+  border-radius: ${root.borderRadius};
   text-decoration: none;
   font-weight: 500;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${(p) => p.theme.colors.secondary};
+    background-color: ${root.colors.secondary};
   }
 `;
 

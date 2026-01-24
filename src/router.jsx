@@ -19,6 +19,10 @@ const router = [
         path: "/",
       },
       {
+        element: <CoffeeList />,
+        path: "/coffee",
+      },
+      {
         element: <IngredientList />,
         path: "/ingredient",
       },
@@ -29,7 +33,7 @@ const router = [
       // dynamic Routes
       {
         element: <CoffeeDetail />,
-        path: "/:id",
+        path: "/coffee/:id",
       },
       {
         element: <IngredientDetail />,

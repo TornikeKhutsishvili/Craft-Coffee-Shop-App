@@ -12,8 +12,9 @@ const SidebarContainer = styled.div`
   top: 0;
   left: 0;
   @media (max-width: 768px) {
-    width: 70px;
+    width: 0px;
     padding: 10px;
+    left: -200px;
   }
 `;
 
@@ -45,6 +46,11 @@ const Nav = styled.ul`
       text-decoration: none;
       gap: 5px;
       &.active {
+        background-color: ${root.colors.accent};
+        color: white;
+      }
+
+      &:hover {
         background-color: ${root.colors.accent};
         color: white;
       }

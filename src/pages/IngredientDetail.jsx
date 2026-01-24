@@ -8,7 +8,7 @@ const Container = styled.div`
   border-radius: ${root.borderRadius};
   box-shadow: ${root.shadow};
   padding: 25px;
-  max-width: 700px;
+  max-width: 100%;
 `;
 
 const Title = styled.h2`
@@ -47,10 +47,10 @@ const IngredientDetail = () => {
       </Description>
       <Meta>
         <p>
-          <strong>Origin:</strong> {ingredient.origin || "Unknown"}
+          <strong>Strength:</strong> {ingredient.strength || "Unknown"}
         </p>
         <p>
-          <strong>Type:</strong> {ingredient.type || "N/A"}
+          <strong>Flavor:</strong> {ingredient.flavor || "N/A"}
         </p>
       </Meta>
     </Container>
