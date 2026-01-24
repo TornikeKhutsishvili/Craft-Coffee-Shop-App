@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContextApi } from "../contexts/ContextApi";
 import root from "../rootStyle";
 
@@ -114,6 +114,7 @@ const EmptyCart = styled.div`
 
 const Cart = () => {
   const { cartItems, setCartItems, formatPrice } = useContextApi();
+  const navigate = useNavigate();
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -121,7 +122,10 @@ const Cart = () => {
 
   const clearCart = () => setCartItems([]);
 
-  const purchaseProduct = () => {};
+  const purchaseProduct = () => {
+    clearCart();
+    navigate("/purchase");
+  };
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
