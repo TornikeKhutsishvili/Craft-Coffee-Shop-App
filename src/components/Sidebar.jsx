@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import root from "../rootStyle";
+import CartBadge from "./CartBadge";
 
 const SidebarContainer = styled.div`
   width: 250px;
@@ -11,6 +12,7 @@ const SidebarContainer = styled.div`
   height: 100vh;
   top: 0;
   left: 0;
+
   @media (max-width: 768px) {
     width: 0px;
     padding: 10px;
@@ -22,11 +24,13 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+
   img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
   }
+
   h1 {
     font-size: 1.5rem;
     color: ${root.colors.primary};
@@ -35,8 +39,11 @@ const Logo = styled.div`
 
 const Nav = styled.ul`
   list-style: none;
+  position: relative;
+
   li {
     margin-bottom: 15px;
+
     a {
       display: flex;
       align-items: center;
@@ -45,6 +52,7 @@ const Nav = styled.ul`
       color: ${root.colors.text};
       text-decoration: none;
       gap: 5px;
+
       &.active {
         background-color: ${root.colors.accent};
         color: white;
@@ -56,6 +64,12 @@ const Nav = styled.ul`
       }
     }
   }
+`;
+
+const CartBadgeContainer = styled.div`
+  position: absolute;
+  top: 110px;
+  right: 0px;
 `;
 
 const Sidebar = () => {
@@ -84,7 +98,9 @@ const Sidebar = () => {
               <i className="fas fa-shopping-cart"></i>
               Cart
             </NavLink>
-            <div className="cart-badge"></div>
+            <CartBadgeContainer>
+              <CartBadge />
+            </CartBadgeContainer>
           </li>
         </Nav>
       </SidebarContainer>
